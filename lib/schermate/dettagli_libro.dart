@@ -42,35 +42,49 @@ class DettagliLibro extends StatelessWidget {
               ),
             ),
           ),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Text("Casa editrice: "),
-              Text(libro.casaEditice ?? "Non disponibile"),
-            ],
+          Center(
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text("Casa editrice: "),
+                Text(libro.casaEditice ?? "Non disponibile"),
+              ],
+            ),
           ),
-          const Text("Descrizione:"),
-          Text(libro.descrizione ?? "Non disponibile"),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Text("ISBN: "),
-              Text(libro.isbn),
-            ],
+          Center(
+            child: Row(
+              children: [
+                const Text("Descrizione:"),
+                Text(libro.descrizione ?? "Non disponibile"),
+              ],
+            ),
           ),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Text("Pagine: "),
-              Text("${libro.pagine}"),
-            ],
+          Center(
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text("ISBN: "),
+                Text(libro.isbn),
+              ],
+            ),
           ),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Text("Stato: "),
-              Text(libro.getStatoString()),
-            ],
+          Center(
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text("Pagine: "),
+                Text("${libro.pagine}"),
+              ],
+            ),
+          ),
+          Center(
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text("Stato: "),
+                Text(libro.getStatoString()),
+              ],
+            ),
           ),
           // Mostriamo i pulsanti per leggere i libri solo negli stati corretti
           if (libro.stato == Stato.daLeggere ||
@@ -123,7 +137,7 @@ class DettagliLibro extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.delete),
+        backgroundColor: Colors.blue[200],
         onPressed: () {
           for (final session in libro.sessioni) {
             session.delete();
@@ -131,6 +145,7 @@ class DettagliLibro extends StatelessWidget {
           libro.delete();
           Navigator.pop(context);
         },
+        child: const Icon(Icons.delete),
       ),
     );
   }
